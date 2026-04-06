@@ -17,7 +17,7 @@ def generate_launch_description():
                     package='ouster_point_type_adapter',
                     plugin='ouster_point_type_adapter::OusterPointTypeAdapter',
                     name='ouster_point_type_adapter',
-                    remappings=[('input', '/sensing/lidar/os1/points'),
+                    remappings=[('input', '/ouster/points'),
                                 ('output', '/sensing/lidar/os1/pointcloud') ],
                 )
             ],

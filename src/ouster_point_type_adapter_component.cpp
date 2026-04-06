@@ -3,7 +3,7 @@
 #include "rclcpp_components/register_node_macro.hpp"
 #include "sensor_msgs/point_cloud2_iterator.hpp"
 #include "pcl_conversions/pcl_conversions.h"
-#include "ouster_ros/include/ouster_ros/os_point.h"
+#include "ouster_ros/os_point.h"
 #include "autoware/point_types/types.hpp"
 #include <cmath>
 
@@ -13,7 +13,7 @@ OusterPointTypeAdapter::OusterPointTypeAdapter(const rclcpp::NodeOptions & optio
 : Node("ouster_point_type_adapter", options)
 {
   subscription_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-    "input", 10, std::bind(&OusterPointTypeAdapter::pointCloudCallback, this, std::placeholders::_1));
+    "input", rclcpp::QoS(10).best_effort(), std::bind(&OusterPointTypeAdapter::pointCloudCallback, this, std::placeholders::_1));
   publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("output", 10);
 }
 
